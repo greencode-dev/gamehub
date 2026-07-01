@@ -14,6 +14,6 @@ Route::get('/user', function (Request $request) {
 Route::get('genres', [GenreController::class, 'index']);
 Route::get('platforms', [PlatformController::class, 'index']);
 Route::get('games', [GameController::class, 'index']);
-Route::get('games/{game}', [GameController::class, 'show']);
+Route::get('games/{game:slug}', [GameController::class, 'show']);
 Route::get('news', [NewsController::class, 'index']);
-Route::get('news/{news}', [NewsController::class, 'show']);
+Route::get('news/{news:slug}', [NewsController::class, 'show']);
