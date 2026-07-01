@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\GameGenreController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
         ->except(['show']);
     Route::resource('platforms', PlatformController::class)
         ->except(['show']);
+    Route::resource('games', GameController::class);
 });
 
 require __DIR__.'/auth.php';
