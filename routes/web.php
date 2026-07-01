@@ -5,6 +5,10 @@ use App\Http\Controllers\Admin\GameGenreController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Game;
+use App\Models\GameGenre;
+use App\Models\News;
+use App\Models\Platform;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +16,14 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard', [
+        'stats' => [
+            'games' => Game::count(),
+            'news' => News::count(),
+            'genres' => GameGenre::count(),
+            'platforms' => Platform::count(),
+        ],
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
