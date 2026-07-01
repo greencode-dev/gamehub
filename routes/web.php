@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\GameGenreController;
+use App\Http\Controllers\Admin\PlatformController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,8 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
     Route::resource('genres', GameGenreController::class)
+        ->except(['show']);
+    Route::resource('platforms', PlatformController::class)
         ->except(['show']);
 });
 
